@@ -1,16 +1,15 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import './Button.scss';
-import { useTranslation } from 'react-i18next';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import "./Button.scss";
 
 interface Props {
-  variant?: 'contained' | 'text' | 'outlined';
-  color?: 'primary' | 'secondary';
+  variant?: "contained" | "text" | "outlined";
+  color?: "primary" | "secondary";
   className?: string;
   buttonText: string;
   onClick?: () => void;
   size?: string;
-  type?: 'button' | 'submit' | 'reset';
+  type?: "button" | "submit" | "reset";
   disabled?: boolean;
   startIcon?: JSX.Element;
   endIcon?: JSX.Element;
@@ -18,20 +17,18 @@ interface Props {
 }
 
 export const CustomButton: React.FC<Props> = ({
-  color = 'primary',
-  variant = 'contained',
-  className = '',
+  color = "primary",
+  variant = "contained",
+  className = "",
   buttonText,
-  size = '',
+  size = "",
   onClick,
-  type = 'button',
+  type = "button",
   disabled,
   startIcon,
   endIcon,
-  errors = '',
+  errors = "",
 }) => {
-  const { t } = useTranslation();
-
   return (
     <Button
       type={type}
@@ -44,7 +41,7 @@ export const CustomButton: React.FC<Props> = ({
       endIcon={endIcon}
       aria-errormessage={errors}
     >
-      {t(buttonText)}
+      {buttonText}
     </Button>
   );
 };
