@@ -1,0 +1,69 @@
+@import "../../../styles/colors";
+
+.text {
+  color: $text-color;
+  line-height: 2rem;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-family: QuicksandBold;
+}
+
+.sub-heading {
+  font-size: 2rem;
+  font-family: QuicksandBold;
+}
+
+.description-small {
+  font-size: 0.9rem;
+}
+
+.description {
+  font-size: 1.2rem;
+}
+
+.bold {
+  font-family: QuicksandBold;
+}
+
+.accent {
+  color: #4f46e5;
+}
+
+.home-text-description {
+  position: absolute;
+  width: 31.25rem;
+  height: 7.25rem;
+  left: 6.25rem;
+  top: 25.5rem;
+  font-size: 1.5rem;
+  font-weight: 200;
+  line-height: 1.75rem;
+}
+
+.description-bold {
+  font-size: 1.2rem;
+  font-family: QuicksandBold;
+}
+
+.light-text {
+  color: rgb(99, 99, 99);
+  font-family: QuicksandLight;
+  font-size: 0.8rem;
+}
+
+.text.underlined {
+  text-decoration-line: underline;
+  color: $accent-color;
+}
+
+.tax-description {
+  color: gray;
+  font-size: small;
+  margin: 0 0 -1rem 0;
+}
+
+.error {
+  color: #d03b3a;
+}

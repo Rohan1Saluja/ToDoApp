@@ -1,0 +1,41 @@
+@import "../styles/colors";
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .layout {
+    background-image: url("../assets/background.svg");
+    background-size: cover;
+    height: 30%;
+  }
+  .app-container {
+    position: relative;
+    top: -15%;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    gap: 2rem;
+    height: 50%;
+    width: 50%;
+    .header {
+      width: 100%;
+    }
+    .main-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+      .row {
+        display: flex;
+        border-bottom: 1px solid $gray-color;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        height: 3rem;
+      }
+    }
+  }
+}

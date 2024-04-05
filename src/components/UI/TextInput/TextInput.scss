@@ -1,0 +1,36 @@
+@import "../../../styles/colors";
+
+.text-input {
+  position: relative;
+  background-color: $light-color;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin-top: 1rem;
+  .MuiFormControl-root {
+    width: 100%;
+  }
+  input {
+    padding: 1rem;
+    font-family: QuicksandRegular;
+    // height: 2rem;
+    border: none; /* Remove default border */
+    &:hover,
+    &:focus {
+      /* Resetting hover and focus styles */
+      outline: none !important;
+      /* Add any other styles you want to remove here */
+    }
+  }
+}
+
+.text-input:hover {
+  border: none !important; /* Remove border on hover */
+}
+
+.text-input.small {
+  width: 12rem;
+}
+
+.text-input.large {
+  width: 100%;
+  border: none; /* Remove border for large input */
+}
