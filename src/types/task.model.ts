@@ -3,3 +3,8 @@ export type TaskModel = {
   name: string;
   status: string;
 };
+
+export type TaskInFocusModel = {
+  id: number;
+  value: boolean;
+};
