@@ -5,6 +5,6 @@ export type TaskModel = {
 };
 
 export type TaskInFocusModel = {
-  id: number;
+  id: string;
   value: boolean;
 };
