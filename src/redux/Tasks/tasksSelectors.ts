@@ -1,11 +1,15 @@
+import { createSelector } from "reselect";
 import { RootState } from "../store";
 
-export const setActiveTasks = (state: RootState) => state.tasks.activeTasks;
+export const selectTasksInFocusList = (state: RootState) =>
+  state.tasks.tasksInFocusList;
 
-export const setCompletedTasks = (state: RootState) =>
+export const selectActiveTasks = (state: RootState) => state.tasks.activeTasks;
+
+export const selectCompletedTasks = (state: RootState) =>
   state.tasks.completedTasks;
 
-export const setAllTasks = (state: RootState) => [
-  state.tasks.activeTasks,
-  state.tasks.completedTasks,
-];
+export const selectAllTasks = createSelector(
+  [selectActiveTasks, selectCompletedTasks],
+  (activeTasks, completedTasks) => [...activeTasks, ...completedTasks]
+);

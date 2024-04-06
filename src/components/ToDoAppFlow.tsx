@@ -7,10 +7,14 @@ import { IconButton } from "@mui/material";
 import { getTaskFocusList } from "./utils";
 import { TaskModel } from "../types/task.model";
 import { TaskActiveTab } from "../types/enums/activity.enum";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { ActiveTab } from "./ActiveTab/ActiveTab";
+import { selectAllTasks } from "../redux/Tasks/tasksSelectors";
+import { Button } from "./UI/Button";
 
 export const AppFlow: React.FC = () => {
   const dispatch = useDispatch();
+  const appTasks = useSelector(selectAllTasks);
   const [savedTasks, setSavedTasks] = React.useState<TaskModel[]>();
   const [activeTab, setActiveTab] = React.useState(TaskActiveTab.all);
   const list = [
@@ -21,18 +25,27 @@ export const AppFlow: React.FC = () => {
 
   const loadTasksFromLocalStorage = () => {
     const loadTasks = localStorage.getItem("tasks");
-    setSavedTasks(loadTasks ? JSON.parse(loadTasks) : []);
+    setSavedTasks(loadTasks ? JSON.parse(loadTasks) : appTasks);
+    const taskFocusList = getTaskFocusList(
+      loadTasks ? JSON.parse(loadTasks) : appTasks
+    );
     dispatch({
       type: "tasks/setTasksInFocusList",
-      payload: getTaskFocusList(savedTasks ?? []),
+      payload: taskFocusList,
     });
+    console.log("Task Focus List:", taskFocusList);
+
     console.log("Load:", loadTasks);
   };
   const handleTaskinput = (event: any) => {
     console.log("Value:", event.target.value);
   };
 
-  const handleTaskClick = () => {};
+  //Tab Selection
+
+  const handleTabClick = (tabName: TaskActiveTab) => {
+    setActiveTab(tabName);
+  };
 
   React.useEffect(() => {
     loadTasksFromLocalStorage();
@@ -51,20 +64,30 @@ export const AppFlow: React.FC = () => {
           />
         </div>
         <div className="main-container">
-          {list.map((item, index) => (
-            <div className="row" key={index}>
-              <Text text={item} className="description" />
-              <IconButton onClick={handleTaskClick}>
-                <Check />
-              </IconButton>
-            </div>
-          ))}
+          <ActiveTab list={list} activeTab={activeTab} />
           <div className="navbar">
             <Text text="items left" className="description-small " />
             <div className="tabs">
-              <Text text="All" className="description-small" />
-              <Text text="Active" className="description-small" />
-              <Text text="Completed" className="description-small" />
+              <Button
+                buttonText={TaskActiveTab.all}
+                variant="text"
+                className={activeTab === TaskActiveTab.all ? "active" : ""}
+                onClick={() => handleTabClick(TaskActiveTab.all)}
+              />
+              <Button
+                buttonText={TaskActiveTab.active}
+                variant="text"
+                className={activeTab === TaskActiveTab.active ? "active" : ""}
+                onClick={() => handleTabClick(TaskActiveTab.active)}
+              />
+              <Button
+                buttonText={TaskActiveTab.completed}
+                variant="text"
+                className={
+                  activeTab === TaskActiveTab.completed ? "active" : ""
+                }
+                onClick={() => handleTabClick(TaskActiveTab.completed)}
+              />
             </div>
           </div>
         </div>

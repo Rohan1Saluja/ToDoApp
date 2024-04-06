@@ -1,3 +1,13 @@
+@import "../../../styles/colors";
+
+.default {
+  text-transform: none !important;
+  color: $primary-color !important;
+}
+.active {
+  color: $active-color !important;
+}
+
 .default.small {
   width: 100px;
 }
