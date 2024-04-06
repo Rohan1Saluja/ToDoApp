@@ -16,11 +16,6 @@ export const AppFlow: React.FC = () => {
   const appTasks = useSelector(selectAllTasks);
   const [inputTask, setInputTask] = React.useState("");
   const [activeTab, setActiveTab] = React.useState(TaskActiveTab.all);
-  const list = [
-    "Complete Online JavaScript Course",
-    "10 Minutes Meditation",
-    "Read for 1 hour",
-  ];
 
   const handleTaskinput = (event: any) => {
     setInputTask(event.target.value);
@@ -65,7 +60,7 @@ export const AppFlow: React.FC = () => {
           />
         </div>
         <div className="main-container">
-          <ActiveTab list={list} activeTab={activeTab} />
+          <ActiveTab activeTab={activeTab} />
           <div className="navbar">
             <Text text="items left" className="description-small " />
             <div className="tabs">

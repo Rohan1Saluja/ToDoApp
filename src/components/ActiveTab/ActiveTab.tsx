@@ -3,16 +3,27 @@ import { IconButton } from "@mui/material";
 import { Text } from "../UI/Text";
 import { Check } from "@mui/icons-material";
 import { getActiveTabList } from "./utils";
+import React from "react";
+import { TaskActiveTab } from "../../types/enums/activity.enum";
 
 interface Props {
   activeTab: string;
-  list: Array<string>;
 }
 
-export const ActiveTab: React.FC<Props> = ({ activeTab, list }) => {
+export const ActiveTab: React.FC<Props> = ({ activeTab }) => {
   const tasksList = getActiveTabList(activeTab);
   console.log("List of Tasks: ", tasksList);
   const handleTaskClick = () => {};
+
+  const saveTasksToLocalStorage = () => {
+    activeTab != TaskActiveTab.all &&
+      localStorage.setItem(activeTab, JSON.stringify(tasksList));
+    console.log("Successfully Saved");
+  };
+
+  React.useEffect(() => {
+    saveTasksToLocalStorage();
+  }, [activeTab]);
 
   return (
     <div className="active-tab">
