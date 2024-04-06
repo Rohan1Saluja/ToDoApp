@@ -2,8 +2,6 @@ import React from "react";
 import "./ToDoAppFlow.scss";
 import { Text } from "./UI/Text";
 import { TextInput } from "./UI/TextInput";
-import { Check } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
 import { getTaskFocusList } from "./utils";
 import { TaskModel } from "../types/task.model";
 import { TaskActiveTab } from "../types/enums/activity.enum";
@@ -11,11 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { ActiveTab } from "./ActiveTab/ActiveTab";
 import { selectAllTasks } from "../redux/Tasks/tasksSelectors";
 import { Button } from "./UI/Button";
+import { v4 as uuid } from "uuid";
 
 export const AppFlow: React.FC = () => {
   const dispatch = useDispatch();
   const appTasks = useSelector(selectAllTasks);
-  const [savedTasks, setSavedTasks] = React.useState<TaskModel[]>();
+  const [inputTask, setInputTask] = React.useState("");
   const [activeTab, setActiveTab] = React.useState(TaskActiveTab.all);
   const list = [
     "Complete Online JavaScript Course",
@@ -23,22 +22,24 @@ export const AppFlow: React.FC = () => {
     "Read for 1 hour",
   ];
 
-  const loadTasksFromLocalStorage = () => {
-    const loadTasks = localStorage.getItem("tasks");
-    setSavedTasks(loadTasks ? JSON.parse(loadTasks) : appTasks);
-    const taskFocusList = getTaskFocusList(
-      loadTasks ? JSON.parse(loadTasks) : appTasks
-    );
-    dispatch({
-      type: "tasks/setTasksInFocusList",
-      payload: taskFocusList,
-    });
-    console.log("Task Focus List:", taskFocusList);
-
-    console.log("Load:", loadTasks);
-  };
   const handleTaskinput = (event: any) => {
-    console.log("Value:", event.target.value);
+    setInputTask(event.target.value);
+  };
+
+  //
+
+  const handleKeyDown = (event: any) => {
+    if (event.key === "Enter") {
+      // console.log("Key:", event.key);
+      const createTask: TaskModel = {
+        id: uuid(),
+        description: event.target.value,
+        status: activeTab,
+      };
+      // event.preventDefault();
+      dispatch({ type: "tasks/addActiveTask", payload: createTask });
+      setInputTask("");
+    }
   };
 
   //Tab Selection
@@ -47,9 +48,7 @@ export const AppFlow: React.FC = () => {
     setActiveTab(tabName);
   };
 
-  React.useEffect(() => {
-    loadTasksFromLocalStorage();
-  }, []);
+  React.useEffect(() => {}, []);
 
   return (
     <div className="container">
@@ -61,6 +60,8 @@ export const AppFlow: React.FC = () => {
             placeholder="Create a new todo"
             width="large"
             handleChange={(event: any) => handleTaskinput(event)}
+            value={inputTask}
+            onKeyDown={(event: any) => handleKeyDown(event)}
           />
         </div>
         <div className="main-container">

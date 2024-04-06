@@ -1,6 +1,6 @@
 export type TaskModel = {
-  id: number;
-  name: string;
+  id: string;
+  description: string;
   status: string;
 };
 

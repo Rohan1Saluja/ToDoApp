@@ -12,6 +12,7 @@ interface Props {
   handleChange?: any;
   type?: string;
   placeholder?: string;
+  onKeyDown?: any;
 }
 
 export const TextInput: React.FC<Props> = React.forwardRef(
@@ -25,6 +26,7 @@ export const TextInput: React.FC<Props> = React.forwardRef(
       handleChange,
       type = "text",
       placeholder = "",
+      onKeyDown,
     },
     ref
   ) => {
@@ -39,6 +41,7 @@ export const TextInput: React.FC<Props> = React.forwardRef(
           name={name}
           onChange={handleChange}
           placeholder={placeholder}
+          onKeyDown={onKeyDown}
         />
       </div>
     );

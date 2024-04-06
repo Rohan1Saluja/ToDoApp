@@ -1,6 +1,8 @@
+import "./ActiveTab.scss";
 import { IconButton } from "@mui/material";
 import { Text } from "../UI/Text";
 import { Check } from "@mui/icons-material";
+import { getActiveTabList } from "./utils";
 
 interface Props {
   activeTab: string;
@@ -8,14 +10,15 @@ interface Props {
 }
 
 export const ActiveTab: React.FC<Props> = ({ activeTab, list }) => {
-  console.log("Active Tab: ", activeTab);
+  const tasksList = getActiveTabList(activeTab);
+  console.log("List of Tasks: ", tasksList);
   const handleTaskClick = () => {};
 
   return (
-    <div>
-      {list.map((item, index) => (
+    <div className="active-tab">
+      {tasksList.map((task, index) => (
         <div className="row" key={index}>
-          <Text text={item} className="description" />
+          <Text text={task.description} className="description" />
           <IconButton onClick={handleTaskClick}>
             <Check />
           </IconButton>

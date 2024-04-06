@@ -29,15 +29,6 @@
       align-items: center;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
       background-color: #ffffff;
-      .row {
-        display: flex;
-        border-bottom: 1px solid $gray-color;
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.5rem 1rem;
-        min-height: 3rem;
-      }
       .navbar {
         position: absolute;
         bottom: 0;
@@ -80,10 +71,6 @@
       padding: 0.5rem; // Adjust padding for mobile devices
       width: 50%;
       .main-container {
-        .row {
-          padding: 0.5rem;
-        }
-
         .navbar {
           position: absolute;
           bottom: 0;
@@ -120,9 +107,6 @@
       width: 65%;
       .main-container {
         padding: 0.5rem 0;
-        .row {
-          padding: 0.5rem;
-        }
 
         .navbar {
           position: absolute;
@@ -158,9 +142,6 @@
       width: 85%;
       .main-container {
         padding: 0.5rem 0;
-        .row {
-          padding: 0.5rem;
-        }
         .navbar {
           position: absolute;
           bottom: 0;
