@@ -14,6 +14,7 @@ import { v4 as uuid } from "uuid";
 export const AppFlow: React.FC = () => {
   const dispatch = useDispatch();
   const appTasks = useSelector(selectAllTasks);
+  console.log("All Tasks:", appTasks);
   const [inputTask, setInputTask] = React.useState("");
   const [activeTab, setActiveTab] = React.useState(TaskActiveTab.all);
 

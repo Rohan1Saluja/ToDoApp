@@ -15,6 +15,10 @@ const tasksSlice = createSlice({
       state.tasksInFocusList = action.payload;
     },
 
+    setCompletedTasks: (state, action) => {
+      state.completedTasks = action.payload;
+    },
+
     addCompletedTask: (state, action) => {
       state.completedTasks.push(action.payload);
     },
@@ -25,6 +29,10 @@ const tasksSlice = createSlice({
     },
 
     //
+
+    setActiveTasks: (state, action) => {
+      state.activeTasks = action.payload;
+    },
 
     addActiveTask: (state, action) => {
       state.activeTasks.push(action.payload);

@@ -4,15 +4,14 @@ import App from "./App.tsx";
 import "./index.scss";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.ts";
+import { TaskActiveTab } from "./types/enums/activity.enum.ts";
 
 export const StoredActiveTasksContext = React.createContext("");
 export const StoredCompletedTasksContext = React.createContext("");
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const activeTasks = localStorage.getItem("activeTasks") ?? "[]";
-  const completedTasks = localStorage.getItem("completedTasks") ?? "[]";
-  console.log("Local Storage Active:", activeTasks);
-  console.log("Local Storage Completed:", completedTasks);
+  const activeTasks = localStorage.getItem(TaskActiveTab.active) ?? "[]";
+  const completedTasks = localStorage.getItem(TaskActiveTab.completed) ?? "[]";
 
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
