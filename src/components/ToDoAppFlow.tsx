@@ -30,8 +30,9 @@ export const AppFlow: React.FC = () => {
       const createTask: TaskModel = {
         id: uuid(),
         description: event.target.value,
-        status: activeTab,
+        status: TaskActiveTab.active,
       };
+      setActiveTab(TaskActiveTab.active);
       // event.preventDefault();
       dispatch({ type: "tasks/addActiveTask", payload: createTask });
       setInputTask("");
